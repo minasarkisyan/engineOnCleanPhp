@@ -1,0 +1,18 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.myrusakov.ru$ [NC]
+RewriteRule ^(.*)$ http://myrusakov.ru/$1 [R=301,L]
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} (.*)
+RewriteCond %{REQUEST_URI} /$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)(/)$ $1 [R=301,L]
+
+Options -Indexes
+Options -Includes
+Options +FollowSymlinks
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) ./?%{QUERY_STRING}
